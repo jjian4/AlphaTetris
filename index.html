@@ -7,24 +7,55 @@
 			background: gray;
 			color: white;
 			font-family: sans-serif;
-			font-size: 2em;
+			font-size: 1em;
 			text-align: center;
+			line-height: 20px;
+		}
+
+		#title {
+			color: black;
+			font-family: impact;
+			letter-spacing: 10px;
+			font-size: 1.7em;
+			padding-top: 15px;
+			font-style: italic;
+		}
+
+		#name {
+			color: black;
+			font-size: 0.8em;
+			padding-top: 3px;
 		}
 
 		canvas {
-			border: solid .2em white;
+			/*border: solid .2em white;*/
 			/*set canvas to 90% of screen*/
 			height: 80vh;
+		}
+
+		#score {
+			font-size:1.5em;
 		}
 
 	</style>
 </head>
 <body>
+	<div id = "title">
+		ALPHA TETRIS
+	</div>
+
+	<div id = "name">
+		James Jiang
+	</div>
+
 	<div id = "letters">
+		<br>
 		Type your letters!
 		<br>
 		<input type="text" id="userInput"></input>
 		<button onclick="submitted()">Submit</button>
+		<br>
+		<br>
 	</div>
 
 

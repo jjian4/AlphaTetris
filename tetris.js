@@ -5,8 +5,12 @@ let letterPool = "";
 
 //Get a string of letters from user and display it on top
 function submitted(){
+	//replace inquiry section with user's input
    	var userInput = document.getElementById("userInput").value;
     document.getElementById("letters").innerHTML = userInput;
+    document.getElementById("letters").style["letter-spacing"] = "6px";
+    document.getElementById("letters").style["font-size"] = "1.5em";
+    document.getElementById("tetris").style["border"] = "solid .2em white";
 
     //remove nonalphanumeric characters, leaves only letters and digits
     userInput = userInput.replace(/[^A-Za-z0-9]/g, '');
