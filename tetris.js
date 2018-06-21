@@ -70,10 +70,11 @@ function arenaSweep() {
 
 //Used to set the size of the canvas, arena, and pieces
 function setCanvasSize() {
-	canvas.width = 240;
-	canvas.height = 400;
+	//original: width = 240, height = 400, scale = (20,20), arena = (12,20)
+	canvas.width = 300;
+	canvas.height = 500;
 	context.scale(20,20);
-	arena = createMatrix(12,20);
+	arena = createMatrix(15,25);
 }
 
 //PIECES////////////////////////
@@ -87,11 +88,27 @@ function createPiece(type) {
 			[0, 0, 1],
 		];
 	}
+	else if(type === 'B') {
+		return [
+			[0, 1, 0, 0],
+			[0, 1, 0, 0],
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
+		];
+	}
 	else if(type === 'C') {
 		return [
-			[1, 1, 1],
+			[1, 1, 0],
 			[1, 0, 0],
-			[1, 1, 1],
+			[1, 1, 0],
+		];
+	}
+	else if(type === 'D') {
+		return [
+			[0, 0, 1, 0],
+			[0, 0, 1, 0],
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
 		];
 	}
 	else if(type === 'E') {
@@ -100,6 +117,14 @@ function createPiece(type) {
 			[1, 1, 1, 0],
 			[1, 0, 0, 0],
 			[1, 1, 1, 0],
+		];
+	}
+	else if(type === 'F') {
+		return [
+			[0, 1, 1, 0],
+			[0, 1, 0, 0],
+			[0, 1, 1, 0],
+			[0, 1, 0, 0],
 		];
 	}
 	else if(type === 'G') {
@@ -112,13 +137,12 @@ function createPiece(type) {
 	}
 	else if(type === 'H') {
 		return [
-			[1, 0, 0, 0],
-			[1, 0, 0, 0],
-			[1, 1, 1, 0],
-			[1, 0, 1, 0],
+			[1, 0, 0],
+			[1, 1, 1],
+			[1, 0, 1],
 		];
 	}
-	else if(type === 'I') {
+	else if(type === 'I' || type === '1') {
 		return [
 			[0, 1, 0, 0],
 			[0, 1, 0, 0],
@@ -133,6 +157,14 @@ function createPiece(type) {
 			[1, 1, 0],
 		];
 	}
+	else if(type === 'K') {
+		return [
+			[0, 1, 0, 0],
+			[0, 1, 0, 1],
+			[0, 1, 1, 0],
+			[0, 1, 0, 1],
+		];
+	}
 	else if(type === 'L') {
 		return [
 			[0, 1, 0],
@@ -140,10 +172,49 @@ function createPiece(type) {
 			[0, 1, 1],
 		];
 	}
-	else if(type === 'O') {
+	else if(type === 'M') {
+		return [
+			[0, 0, 0, 0, 0],
+			[1, 1, 1, 1, 1],
+			[1, 0, 1, 0, 1],
+			[1, 0, 0, 0, 1],
+			[0, 0, 0, 0, 0],
+		];
+	}
+	else if(type === 'N') {
+		return [
+			[1, 1, 1],
+			[1, 0, 1],
+			[1, 0, 1],
+		];
+	}
+	else if(type === 'O' || type === '0') {
 		return [
 			[1, 1],
 			[1, 1],
+		];
+	}
+	else if(type === 'P') {
+		return [
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
+			[0, 1, 0, 0],
+			[0, 1, 0, 0],
+		];
+	}
+	else if(type === 'Q') {
+		return [
+			[0, 1, 1, 0],
+			[0, 1, 1, 0],
+			[0, 0, 1, 0],
+			[0, 0, 1, 1],
+		];
+	}
+	else if(type === 'R') {
+		return [
+			[1, 1, 0],
+			[1, 0, 0],
+			[1, 0, 0],
 		];
 	}
 	else if(type === 'S') {
@@ -160,11 +231,111 @@ function createPiece(type) {
 			[0, 1, 0],
 		];
 	}
+	else if(type === 'U') {
+		return [
+			[1, 0, 1],
+			[1, 1, 1],
+			[0, 0, 0],
+		];
+	}
+	else if(type === 'V') {
+		return [
+			[1, 0, 1],
+			[1, 0, 1],
+			[0, 1, 0],
+		];
+	}
+	else if(type === 'W') {
+		return [
+			[0, 0, 0, 0, 0],
+			[1, 0, 1, 0, 1],
+			[1, 0, 1, 0, 1],
+			[1, 1, 1, 1, 1],
+			[0, 0, 0, 0, 0],
+		];
+	}
+	else if(type === 'X') {
+		return [
+			[1, 0, 1],
+			[0, 1, 0],
+			[1, 0, 1],
+		];
+	}
+	else if(type === 'Y') {
+		return [
+			[1, 0, 1],
+			[0, 1, 0],
+			[0, 1, 0],
+		];
+	}
 	else if(type === 'Z') {
 		return [
 			[1, 1, 0],
 			[0, 1, 1],
 			[0, 0, 0],
+		];
+	}
+	else if(type === '2') {
+		return [
+			[0, 1, 1, 0],
+			[0, 0, 1, 0],
+			[0, 1, 0, 0],
+			[0, 1, 1, 0],
+		];
+	}
+	else if(type === '3') {
+		return [
+			[0, 1, 1, 1, 0],
+			[0, 0, 0, 1, 0],
+			[0, 1, 1, 1, 0],
+			[0, 0, 0, 1, 0],
+			[0, 1, 1, 1, 0],
+		];
+	}
+	else if(type === '4') {
+		return [
+			[1, 0, 1],
+			[1, 1, 1],
+			[0, 0, 1],
+		];
+	}
+	else if(type === '5') {
+		return [
+			[0, 1, 1, 0],
+			[0, 1, 0, 0],
+			[0, 0, 1, 0],
+			[0, 1, 1, 0],
+		];
+	}
+	else if(type === '6') {
+		return [
+			[0, 1, 1, 1],
+			[0, 1, 0, 0],
+			[0, 1, 1, 1],
+			[0, 1, 1, 1],
+		];
+	}
+	else if(type === '7') {
+		return [
+			[0, 1, 1],
+			[0, 0, 1],
+			[0, 0, 1],
+		];
+	}
+	else if(type === '8') {
+		return [
+			[0, 1, 1, 1, 0],
+			[0, 1, 1, 1, 0],
+			[0, 0, 1, 0, 0],
+			[0, 1, 1, 1, 0],
+			[0, 1, 1, 1, 0],
+		];
+	}
+	else if(type === '9') {
+		return [
+			[0, 1, 1],
+			[0, 1, 1],
+			[0, 0, 1],
 		];
 	}
 }
@@ -198,6 +369,7 @@ function merge(arena, player) {
 //List of 10 colors for blocks
 const colors = [
 	null,
+	'hotpink',
 	'red',
 	'blue',
 	'yellow',
@@ -207,7 +379,6 @@ const colors = [
 	'saddlebrown',
 	'cyan', 
 	'darkgoldenrod',
-	'hotpink',
 ]
 
 
@@ -241,8 +412,12 @@ document.addEventListener('keydown', event => {
 		playerRotate(-1);
 	}
 	//w
-	else if(event.keyCode === 87) {
+	else if(event.keyCode === 87 || event.keyCode === 38) {
 		playerRotate(1);
+	}
+	//space
+	else if(event.keyCode === 32) {
+		playerGround();
 	}
 })
 
@@ -261,6 +436,23 @@ function playerDrop() {
 		updateScore();
 	}
 
+	dropCounter = 0;
+}
+
+//Instantly drops piece to the bottom
+function playerGround() {
+	//keep dropping until there is collision
+	while(!collide(arena, player)) {
+		player.pos.y++;
+	}
+	//undo collision
+	player.pos.y--;
+	merge(arena, player);
+	//next block initialized
+	playerReset();
+	//check if any row is filled 
+	arenaSweep();
+	updateScore();
 	dropCounter = 0;
 }
 
