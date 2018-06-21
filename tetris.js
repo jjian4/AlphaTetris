@@ -21,6 +21,9 @@ function submitted(){
     	letterPool[i] = letterPool[i].toUpperCase();
     }
 
+    //WILL ASK USER FOR SIZE AND SET ACCORDINGLY
+    setCanvasSize();
+
     startGame();
 }
 
@@ -42,7 +45,7 @@ function createMatrix(w, h) {
 	return matrix; 
 }
 
-const arena = createMatrix(12,20);
+var arena = createMatrix(12,20);
 
 //Consistently checks whether a row is filled, and replaces filled rows with empty rows
 function arenaSweep() {
@@ -65,11 +68,57 @@ function arenaSweep() {
 	}
 }
 
+//Used to set the size of the canvas, arena, and pieces
+function setCanvasSize() {
+	canvas.width = 240;
+	canvas.height = 400;
+	context.scale(20,20);
+	arena = createMatrix(12,20);
+}
+
 //PIECES////////////////////////
 
 //Matrix for each piece type
 function createPiece(type) {
-	if(type === 'I') {
+	if(type === 'A') {
+		return [
+			[1, 1, 0],
+			[1, 1, 0],
+			[0, 0, 1],
+		];
+	}
+	else if(type === 'C') {
+		return [
+			[1, 1, 1],
+			[1, 0, 0],
+			[1, 1, 1],
+		];
+	}
+	else if(type === 'E') {
+		return [
+			[1, 1, 1, 0],
+			[1, 1, 1, 0],
+			[1, 0, 0, 0],
+			[1, 1, 1, 0],
+		];
+	}
+	else if(type === 'G') {
+		return [
+			[0, 1, 1, 1],
+			[0, 1, 1, 1],
+			[0, 0, 0, 1],
+			[0, 0, 1, 1],
+		];
+	}
+	else if(type === 'H') {
+		return [
+			[1, 0, 0, 0],
+			[1, 0, 0, 0],
+			[1, 1, 1, 0],
+			[1, 0, 1, 0],
+		];
+	}
+	else if(type === 'I') {
 		return [
 			[0, 1, 0, 0],
 			[0, 1, 0, 0],
