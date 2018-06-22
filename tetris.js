@@ -12,12 +12,18 @@ function submitted(){
 
     //make sure text field is not empty
     try {
-    	if(string == "") throw err;
+    	if(document.getElementById("canvasSize").value == "null") 
+    		throw "Size selection";
+    	if(string == "") 
+    		throw "Input";
     }
     catch(err) {
-    	alert("Input not valid! >:(");
-		return;
+    	alert(err + " is empty.");
+    	return;
     }
+
+    //Set canvas size according to selection
+    setCanvasSize();
 
 	//replace inquiry section with user's input
     document.getElementById("letters").innerHTML = userInput;
@@ -32,9 +38,6 @@ function submitted(){
     for(var i = 0; i < letterPool.length; i++) {
     	letterPool[i] = letterPool[i].toUpperCase();
     }
-
-    //TODO: ASK USER FOR SIZE AND SET ACCORDINGLY
-    setCanvasSize();
 
     startGame();
 }
@@ -88,11 +91,24 @@ function arenaSweep() {
 
 //Used to set the size of the canvas, arena, and pieces
 function setCanvasSize() {
-	//original: width = 240, height = 400, scale = (20,20), arena = (12,20)
-	canvas.width = 300;
-	canvas.height = 440;
-	context.scale(20,20);
-	arena = createMatrix(15,22);
+	if(document.getElementById("canvasSize").value == "small") {
+		canvas.width = 240;
+		canvas.height = 400;
+		context.scale(20,20);
+		arena = createMatrix(12, 20);
+	}
+	if(document.getElementById("canvasSize").value == "medium") {
+		canvas.width = 320;
+		canvas.height = 460;
+		context.scale(20,20);
+		arena = createMatrix(16,23);
+	}
+	if(document.getElementById("canvasSize").value == "large") {
+		canvas.width = 400;
+		canvas.height = 500;
+		context.scale(20,20);
+		arena = createMatrix(20,25);
+	}
 }
 
 //PIECES////////////////////////
