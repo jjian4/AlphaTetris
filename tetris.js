@@ -12,7 +12,7 @@ function submitted(){
 
     //make sure text field is not empty
     try {
-    	if(string == "") throw "no input";
+    	if(string == "") throw err;
     }
     catch(err) {
     	alert("Input not valid! >:(");
@@ -125,11 +125,11 @@ function createPiece(type) {
 	}
 	else if(type === 'E') {
 		return [
-			[0, 1, 1, 1, 0],
+			[0, 1, 1, 0, 0],
 			[0, 1, 0, 0, 0],
-			[0, 1, 1, 1, 0],
+			[0, 1, 1, 0, 0],
 			[0, 1, 0, 0, 0],
-			[0, 1, 1, 1, 0],
+			[0, 1, 1, 0, 0],
 		];
 	}
 	else if(type === 'F') {
@@ -190,7 +190,7 @@ function createPiece(type) {
 			[0, 0, 0, 0, 0],
 			[1, 1, 1, 1, 1],
 			[1, 0, 1, 0, 1],
-			[1, 0, 1, 0, 1],
+			[0, 0, 0, 0, 0],
 			[0, 0, 0, 0, 0],
 		];
 	}
@@ -261,7 +261,7 @@ function createPiece(type) {
 	else if(type === 'W') {
 		return [
 			[0, 0, 0, 0, 0],
-			[1, 0, 1, 0, 1],
+			[0, 0, 0, 0, 0],
 			[1, 0, 1, 0, 1],
 			[1, 1, 1, 1, 1],
 			[0, 0, 0, 0, 0],
