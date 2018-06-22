@@ -75,6 +75,12 @@ function arenaSweep() {
 		//Score increase
 		player.rows += 1;
 		player.score += player.multiplier * 10;
+		//Update high score
+		if(player.score >= player.highScore) {
+			player.highScore = player.score;
+			document.getElementById('highScore').innerText = "Best Score: " + player.score;
+		}
+
 		//Change in score doubles for every increase in score
 		player.multiplier *= 2;
 	}
@@ -402,6 +408,7 @@ const player = {
 	pos: {x: 0, y: 0},
 	matrix: null,
 	score: 0,
+	highScore: 0,
 	multiplier: 1,
 	rows: 0,
 }
@@ -546,7 +553,6 @@ function playerReset() {
 	//reset collision = game over
 	if(collide(arena, player)) {
 		arena.forEach(row => row.fill(0));
-		document.getElementById('highScore').innerText = "Best Score: " + player.score;
 		player.score = 0;
 		updateScore();
 	}
