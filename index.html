@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tetris</title>
+	<title>Alpha Tetris</title>
 	<style>
 		body {
 			color: white;
@@ -26,14 +26,17 @@
 			font-style: italic;
 		}
 
-		#name {
+		#name a{
 			color: black;
 			font-size: 0.8em;
+			text-decoration: none;
+		}
+
+		#name a:hover {
+			color: red;
 		}
 
 		canvas {
-			/*border: solid .2em white;*/
-			/*set canvas to 90% of screen*/
 			height: 77vh;
 		}
 
@@ -49,17 +52,17 @@
 	</div>
 
 	<div id = "name">
-		James Jiang
+		<a href = "https://github.com/jjian4" target="_blank">James Jiang</a>
 	</div>
 
-	<audio id = "soundtrack">
+	<audio id = "soundtrack" loop>
 	 	<source src="track.mp3" type="audio/mpeg">
 	 	Your browser does not support the audio element.
 	</audio>
 
 	<div id = "letters">
 		<br>
-		Type your letters!
+		Type something!
 		<br>
 		<input type="text" autofocus="autofocus" id="userInput"></input>
 		<br>

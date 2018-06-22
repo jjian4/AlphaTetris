@@ -23,7 +23,7 @@ function submitted(){
     document.getElementById("letters").innerHTML = userInput;
     document.getElementById("letters").style["letter-spacing"] = "6px";
     document.getElementById("letters").style["font-size"] = "1.5em";
-    document.getElementById("tetris").style["border"] = "solid .2em white";
+    document.getElementById("tetris").style["border"] = "solid .1em white";
     document.getElementById("soundtrack").play();
 
     //store characters in a vector
