@@ -5,23 +5,35 @@ let letterPool = "";
 
 //Get a string of letters from user and display it on top
 function submitted(){
+
+    //remove nonalphanumeric characters, leaves only letters and digits
+    var userInput = document.getElementById("userInput").value;
+    string = userInput.replace(/[^A-Za-z0-9]/g, '');
+
+    //make sure text field is not empty
+    try {
+    	if(string == "") throw "no input";
+    }
+    catch(err) {
+    	alert("Input not valid! >:(");
+		return;
+    }
+
 	//replace inquiry section with user's input
-   	var userInput = document.getElementById("userInput").value;
     document.getElementById("letters").innerHTML = userInput;
     document.getElementById("letters").style["letter-spacing"] = "6px";
     document.getElementById("letters").style["font-size"] = "1.5em";
     document.getElementById("tetris").style["border"] = "solid .2em white";
+    document.getElementById("soundtrack").play();
 
-    //remove nonalphanumeric characters, leaves only letters and digits
-    userInput = userInput.replace(/[^A-Za-z0-9]/g, '');
     //store characters in a vector
-    letterPool = [...userInput];
+    letterPool = [...string];
     //Capitalize every letter
     for(var i = 0; i < letterPool.length; i++) {
     	letterPool[i] = letterPool[i].toUpperCase();
     }
 
-    //WILL ASK USER FOR SIZE AND SET ACCORDINGLY
+    //TODO: ASK USER FOR SIZE AND SET ACCORDINGLY
     setCanvasSize();
 
     startGame();
@@ -72,9 +84,9 @@ function arenaSweep() {
 function setCanvasSize() {
 	//original: width = 240, height = 400, scale = (20,20), arena = (12,20)
 	canvas.width = 300;
-	canvas.height = 500;
+	canvas.height = 440;
 	context.scale(20,20);
-	arena = createMatrix(15,25);
+	arena = createMatrix(15,22);
 }
 
 //PIECES////////////////////////
@@ -113,10 +125,11 @@ function createPiece(type) {
 	}
 	else if(type === 'E') {
 		return [
-			[1, 1, 1, 0],
-			[1, 1, 1, 0],
-			[1, 0, 0, 0],
-			[1, 1, 1, 0],
+			[0, 1, 1, 1, 0],
+			[0, 1, 0, 0, 0],
+			[0, 1, 1, 1, 0],
+			[0, 1, 0, 0, 0],
+			[0, 1, 1, 1, 0],
 		];
 	}
 	else if(type === 'F') {
@@ -177,7 +190,7 @@ function createPiece(type) {
 			[0, 0, 0, 0, 0],
 			[1, 1, 1, 1, 1],
 			[1, 0, 1, 0, 1],
-			[1, 0, 0, 0, 1],
+			[1, 0, 1, 0, 1],
 			[0, 0, 0, 0, 0],
 		];
 	}
@@ -185,7 +198,7 @@ function createPiece(type) {
 		return [
 			[1, 1, 1],
 			[1, 0, 1],
-			[1, 0, 1],
+			[0, 0, 0],
 		];
 	}
 	else if(type === 'O' || type === '0') {
@@ -395,6 +408,10 @@ const player = {
 
 //Listen and respond to keyboard commands
 document.addEventListener('keydown', event => {
+	//enter
+	if(event.keyCode === 13) {
+		submitted();
+	}
 	//left
 	if(event.keyCode === 37) {
 		playerMove(-1);
@@ -529,6 +546,7 @@ function playerReset() {
 	//reset collision = game over
 	if(collide(arena, player)) {
 		arena.forEach(row => row.fill(0));
+		document.getElementById('highScore').innerText = "Best Score: " + player.score;
 		player.score = 0;
 		updateScore();
 	}
