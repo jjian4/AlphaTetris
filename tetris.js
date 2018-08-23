@@ -97,13 +97,13 @@ function setCanvasSize() {
 		context.scale(20,20);
 		arena = createMatrix(12, 20);
 	}
-	if(document.getElementById("canvasSize").value == "medium") {
+	else if(document.getElementById("canvasSize").value == "medium") {
 		canvas.width = 320;
 		canvas.height = 460;
 		context.scale(20,20);
 		arena = createMatrix(16,23);
 	}
-	if(document.getElementById("canvasSize").value == "large") {
+	else if(document.getElementById("canvasSize").value == "large") {
 		canvas.width = 400;
 		canvas.height = 500;
 		context.scale(20,20);
